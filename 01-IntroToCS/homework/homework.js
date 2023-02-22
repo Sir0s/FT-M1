@@ -19,7 +19,7 @@ function DecimalABinario(num) {
    binario += +resta.toString();
   }
   binario += num.toString();
-  return binario.split('').reverse().join('');
+  return binario.split('').reverse().join(''); //invertir el string
 }
 
 module.exports = {
