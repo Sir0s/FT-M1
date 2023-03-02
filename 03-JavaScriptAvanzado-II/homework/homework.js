@@ -46,11 +46,7 @@ function cacheFunction(cb) {
   return function(arg){
     if (memoria.hasOwnProperty(arg)){
       return memoria[arg];
-    }else {
-      var parametro = cb(arg);
-      memoria[arg] = parametro;
-      return parametro;
-    }
+    }else {return memoria[arg] = cb(arg);}
   }
 }
 
