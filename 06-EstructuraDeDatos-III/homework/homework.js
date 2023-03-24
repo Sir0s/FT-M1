@@ -20,11 +20,21 @@ function BinarySearchTree(value) {
       if (this.left){this.left.size(); c++}
       return c;
    }
-   BinarySearchTree.prototype.insert = function (value){
-    if (value>=this.value ){if (this.right){this.right.insert(value);} else {this.right = new BinarySearchTree(value);}}
-    else {if (this.left){this.left.insert(value);}else {this.left= new BinarySearchTree(value);}}
-
-   }
+   BinarySearchTree.prototype.insert = function (value) {
+     if (value >= this.value) {
+       if (this.right) {
+         this.right.insert(value);
+       } else {
+         this.right = new BinarySearchTree(value);
+       }
+     } else {
+       if (this.left) {
+         this.left.insert(value);
+       } else {
+         this.left = new BinarySearchTree(value);
+       }
+     }
+   };
    BinarySearchTree.prototype.contains = function (value)
    {
    if(this.value === value){return true}
@@ -40,26 +50,32 @@ function BinarySearchTree(value) {
          }
 }
          
-   BinarySearchTree.prototype.depthFirstForEach = function (cb,order)
-   {
-     switch(order){
-      case 'pre-order' :  {cb(this.value);  
-                           if(this.left) this.left.depthFirstForEach(cb,order); 
-                           if(this.right) this.right.depthFirstForEach(cb,order); }
-                           break;
-      case 'post-order' : {if (this.left) this.left.depthFirstForEach(cb,order); 
-                           if (this.right) this.right.depthFirstForEach(cb,order);
-                           cb(this.value); }
-                           break;
-      default:
-      case 'in-order' : {if(this.left) this.left.depthFirstForEach(cb,order); 
-                        cb(this.value);  
-                        if(this.right)this.right.depthFirstForEach(cb,order);}
-                        break;
-      
-        
+   BinarySearchTree.prototype.depthFirstForEach = function (cb, order) {
+     switch (order) {
+       case "pre-order":
+         {
+           cb(this.value);
+           if (this.left) this.left.depthFirstForEach(cb, order);
+           if (this.right) this.right.depthFirstForEach(cb, order);
+         }
+         break;
+       case "post-order":
+         {
+           if (this.left) this.left.depthFirstForEach(cb, order);
+           if (this.right) this.right.depthFirstForEach(cb, order);
+           cb(this.value);
+         }
+         break;
+       default:
+       case "in-order":
+         {
+           if (this.left) this.left.depthFirstForEach(cb, order);
+           cb(this.value);
+           if (this.right) this.right.depthFirstForEach(cb, order);
+         }
+         break;
      }
-   }
+   };
    BinarySearchTree.prototype.breadthFirstForEach = function (cb,arr){
    if (!arr){var arr= [];}
    cb(this.value);
